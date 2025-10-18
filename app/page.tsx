@@ -36,6 +36,40 @@ export default function Home() {
   };
   
   return (
-    <main></main>
-  )
+    <main>
+      <div>
+        <input
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder="Things to do"
+        />
+        <button
+          onClick={addTodo}
+        >Add</button>
+      </div>
+      <ul className="w-72">
+        {todos.map((todo) => (
+          <li
+            key={todo.id}
+          >
+            <span
+              onClick={() => toggleTodo(todo.id)}
+              className={`cursor-pointer ${
+                todo.done ? "line-through text-gray-400" : ""
+              }`}
+            >
+              {todo.text}
+            </span>
+            <button
+              onClick={() => deleteTodo(todo.id)}
+              className="text-red-500 hover:text-red-700"
+            >
+              ✕
+            </button>
+          </li>
+        ))}
+      </ul>
+    </main>
+  );
 }
