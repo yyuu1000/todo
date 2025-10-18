@@ -7,7 +7,7 @@ import {
   Card,
   CardContent,
 } from "@/components/ui/card";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Pencil, X } from "lucide-react";
 
 type Todo = {
@@ -21,6 +21,21 @@ export default function Home() {
   const [input, setInput] = useState("");
   const [editingId, setEditingId] = useState<number | null>(null);
   const [editText, setEditText] = useState("");
+
+  useEffect(() => {
+    const stored = localStorage.getItem("todos");
+    if (stored) {
+      try {
+        setTodos(JSON.parse(stored));
+      } catch (e) {
+        console.error("Failed to  parse todo:" + e);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   const addTodo = () => {
     if (input.replace(/\s/g, "") === "") return;
