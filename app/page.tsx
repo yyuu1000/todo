@@ -1,5 +1,6 @@
 "use client";
 
+import { ModeToggle } from "@/components/Mode";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
@@ -48,9 +49,11 @@ export default function Home() {
         />
         <Button
           onClick={addTodo}
+          variant="outline"
         >
           Add
         </Button>
+        <ModeToggle />
       </div>
       <ul className="w-72">
         {todos.map((todo) => (
@@ -67,6 +70,7 @@ export default function Home() {
             </span>
             <Button
               onClick={() => deleteTodo(todo.id)}
+              variant="outline"
               className="text-red-500 hover:text-red-700"
             >
               ✕
