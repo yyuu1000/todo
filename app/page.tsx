@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { useState } from "react";
 
 type Todo = {
@@ -37,16 +39,18 @@ export default function Home() {
   
   return (
     <main>
-      <div>
-        <input
+      <div className="flex">
+        <Input
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Things to do"
         />
-        <button
+        <Button
           onClick={addTodo}
-        >Add</button>
+        >
+          Add
+        </Button>
       </div>
       <ul className="w-72">
         {todos.map((todo) => (
@@ -61,12 +65,12 @@ export default function Home() {
             >
               {todo.text}
             </span>
-            <button
+            <Button
               onClick={() => deleteTodo(todo.id)}
               className="text-red-500 hover:text-red-700"
             >
               ✕
-            </button>
+            </Button>
           </li>
         ))}
       </ul>
