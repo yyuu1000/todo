@@ -21,7 +21,7 @@ export default function Home() {
   const [input, setInput] = useState("");
 
   const addTodo = () => {
-    if (!input.trim) return;
+    if (input.replace(/\s/g, "") === "") return;
     const newTodo: Todo = {
       id: Date.now(),
       text: input,
